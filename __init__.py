@@ -506,8 +506,8 @@ def unregister():
         for cls in classes:
             bpy.utils.unregister_class(cls)
             
-    del bpy.types.Scene.deep_bump_tool
-
+    if hasattr(bpy.types.Scene, 'deep_bump_tool'):
+        del bpy.types.Scene.deep_bump_tool
 
 if __name__ == '__main__':
     register()
