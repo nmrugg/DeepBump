@@ -29,3 +29,11 @@ See `python3 cli.py -h` for a list of possible arguments. Some examples :
         python3 cli.py normals.png curvature.png normals_to_curvature
 
         python3 cli.py normals.png curvature.png normals_to_curvature --normals_to_curvature-blur_radius SMALLEST
+
+## Batch Processing
+
+To process all images in a folder, use the `--batch` argument. For example:
+
+        python3 cli.py input_folder output_folder color_to_normals --batch
+
+This will process all images in `input_folder` and save the output images to `output_folder` using the `color_to_normals` module.
