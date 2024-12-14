@@ -38,7 +38,7 @@ def get_dependencies_path():
 # Python dependencies management helpers from :
 # https://github.com/robertguetzkow/blender-python-examples/tree/master/add_ons/install_dependencies
 Dependency = namedtuple('Dependency', ['module', 'package', 'name'])
-dependencies = (Dependency(module='onnxruntime', package=None, name='ort'),
+dependencies = (Dependency(module='onnxruntime', package="onnxruntime>=1.7.0,<1.16", name='ort'), # v1.16 introduced issues https://github.com/microsoft/onnxruntime/issues/17631, revealedd by unit tests
                 Dependency(module='numpy', package=None, name='np'))
 dependencies_installed = False
 
@@ -506,8 +506,8 @@ def unregister():
         for cls in classes:
             bpy.utils.unregister_class(cls)
             
-    del bpy.types.Scene.deep_bump_tool
-
+    if hasattr(bpy.types.Scene, 'deep_bump_tool'):
+        del bpy.types.Scene.deep_bump_tool
 
 if __name__ == '__main__':
     register()
